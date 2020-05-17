@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-import re #regex library
-import chem_algo as libalgo
-import sys
+import re
+import chem_algo as libalgo 	#	my own library 
+import sys						
 ###	given a chemical reaction returns the compounds inside it, and which isde they are on
 ###	fixes the array begore that as well
 def ret_compounds(reaction):
@@ -115,16 +115,3 @@ class chemical_reaction:
 			tmp_format_string_list.append(' ')
 			
 		print (''.join(tmp_format_string_list))
-
-#string="K2Cr2O7 + KI + H2SO4 -> Cr2(SO4)3 + I2 + H2O + K2SO4"
-while 1:
-	string = input("Reaction: ")	
-	if string == "Exit":
-		sys.exit(0)
-	else:
-		c=chemical_reaction(string)
-		c.make_table()
-		c.solve_eq()
-		#print (c._matrix)
-		#print(c._vector)
-		#libalgo.matr_vect(c._matrix,c._vector)

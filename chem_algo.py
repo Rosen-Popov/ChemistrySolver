@@ -1,9 +1,4 @@
 from math import gcd
-#t = [[1, 2, -2, -1], [2, 0, -1, 0], [6, 0, 0, -2]]
-#t2 = [[0, 0, 2, 0, 0, 0, -2], [1, 1, 0, 0, 0, -2, 0], [0, 1, 0, 0, -1, 0, 0], [0, 4, 4, 0, -4, -4, -1], [0, 0, 1, 0, -1, -1, 0], [1, 0, 0, -2, 0, 0, 0]]
-#table = [[4, 0, -1, 0], [10, 0, 0, -2],[0, 2, -2, -1]]
-#strange = [[1,0,-1,-1],[0,2,-2,-1]]
-#strange2 = [[2,0,-2],[0,2,-1],[0,2,-1]]
 
 ### Subtracts two vectors; 
 ### returns result
@@ -200,9 +195,3 @@ def int_chem_matrix_kernel(matrix):
 ### returns a vector
 def get_integer_kernel(matr):
     return int_chem_matrix_kernel(matr)
-
-#print(get_integer_kernel(t))
-#print(get_integer_kernel(t2))
-#print(get_integer_kernel(table))
-#print(get_integer_kernel(strange))
-#print(get_integer_kernel(strange2))
