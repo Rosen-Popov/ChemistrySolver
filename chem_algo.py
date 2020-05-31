@@ -1,17 +1,17 @@
 from math import gcd
 
-### Subtracts two vectors; 
+### Subtracts two vectors;
 ### returns result
 def matr_vect(matr,vect):
     for i in matr:
-        print (sproduct(i,vect)) 
+        print (sproduct(i,vect))
 def subtract(vect1, vect2):
     tmp=[]
     for i in range(0,len(vect1)):
         tmp.append(vect1[i]-vect2[i])
     return tmp
 
-### Multiplies a vector by a number; 
+### Multiplies a vector by a number;
 ### retruns a new vector
 def num_vect(times,vect):
     tmp = []
@@ -30,7 +30,7 @@ def gcd_vector(vector):
             result = gcd (result,vector[p])
     return result
 
-### optimises vector, by deviding all of its members to their gcd 
+### optimises vector, by deviding all of its members to their gcd
 ### see gcd_vector
 ### returns a new vector
 def optimise_vector(vect):
@@ -50,7 +50,7 @@ def sproduct(arr1,arr2):
             summ= summ + arr1[i]*arr2[i]
     else:
         print ("vector length mismatch")
-    return summ 
+    return summ
 ### finds lowest common multiple of two numbers;
 ### returns int
 def lcm(a, b):
@@ -72,14 +72,14 @@ def optimise_gauss(matr,ind):
 def gauss_reduction(hmatrix):
     for i in range(0,len(hmatrix)-1):
         if hmatrix[i][i] == 0:
-            hmatrix=optimise_gauss(hmatrix,i) 
+            hmatrix=optimise_gauss(hmatrix,i)
         for j in range(i+1,len(hmatrix)):
             if  hmatrix[i][i] != 0 and hmatrix[j][i] !=0:
                 devisor = int(lcm(hmatrix[i][i],hmatrix[j][i]))
                 c1 = int(devisor // hmatrix[i][i])
                 c2 = int(devisor // hmatrix[j][i])
                 hmatrix[j] = optimise_vector(subtract(num_vect(c1,hmatrix[i]),num_vect(c2,hmatrix[j])))
-    
+
     for i in range(len(hmatrix)-1,0,-1):
         ### gauss optimisation here is not needed beacuse after the first cycle all pivots are(should be) set
         for j in range(i-1,-1,-1):
@@ -98,7 +98,7 @@ def zeros(vect):
         if i == 0:
             p+=1
     return p
-### finds number of elements that have values on the same indexes 
+### finds number of elements that have values on the same indexes
 ### used in acessing how many of the variables in a line have a value in the solution
 ### returns the number of in a an array
 def exist_in_both(source,loc):
@@ -118,7 +118,7 @@ def full_zero_lines(matr):
     if len(matr[0])==0:
         return []
     len_line=len(matr[0])
-    z_lines=0 
+    z_lines=0
     for i in matr:
         if zeros(i) == len_line:
             z_lines+=1
@@ -132,7 +132,7 @@ def find_indexes(vect):
             arr.append(i)
     return arr
 
-### function that in the context of a solution vector and another that is ana equesion, 
+### function that in the context of a solution vector and another that is ana equesion,
 ### provides the index of the element that 0 in the solution, but it's a non sezro in the equesion
 ### reurns int, as the index
 def find_missing_index(vect, sol):
@@ -141,9 +141,9 @@ def find_missing_index(vect, sol):
             return i
 
 ### function that finds number of solutions
-### delta of size of matrix + numbers lines full of zeres => 
+### delta of size of matrix + numbers lines full of zeres =>
 ### if result is one then its the general case
-### if result is more than one, ones should be added ustomatically to 
+### if result is more than one, ones should be added ustomatically to
 ### the solution vector
 def solutions(matrix):
     return abs(len(matrix)-len(matrix[0])) + full_zero_lines(matrix)
@@ -158,26 +158,26 @@ def int_chem_matrix_kernel(matrix):
         return []
 
     sol = [0] * len(matrix[0])
-    num_comb =  solutions(matrix)  
+    num_comb =  solutions(matrix)
     if num_comb>1:
         for p in range(len(matrix),len(matrix[0])):
-            sol[p] = 1 
+            sol[p] = 1
     not_solved = True
     line_len = len(matrix[0])
     rows = len(matrix)
-    line = 0 
+    line = 0
     factors = 0
     failsafe = 0
 
     while(zeros(sol)!=0):
         failsafe+=1
         assert(failsafe <= 100)
-        factors = line_len - zeros(matrix[line]) 
+        factors = line_len - zeros(matrix[line])
         matches = exist_in_both(matrix[line],sol)
         if factors == 2 and matches == 0:
             fact = find_indexes(matrix[line])
             ### we know that all of the indexes are coprime, because of the optimisation
-            ### therefore we can just exchange their absolute values and be done with it 
+            ### therefore we can just exchange their absolute values and be done with it
             sol[fact[0]] = abs (matrix[line][fact[1]])
             sol[fact[1]] = abs (matrix[line][fact[0]])
         elif factors - matches == 1 and matches !=0:
