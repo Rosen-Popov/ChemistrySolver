@@ -1,25 +1,24 @@
-    "H2 + O2 = H2O",
-    "Fe + O2 = Fe2O3",        4*Fe + 3*O2 = 2*Fe2O3
-    "NH3 + O2 = N2 + H2O",    4*NH3 + 3*O2 = 2*N2 + 6*H2O
-    "C2H2 + O2 = CO2 + H2O",
-    "C3H8O + O2 = CO2 + H2O", 2*C3H8O + 9*O2 = 6*CO2 + 8*H2O
-    "Na + O2 = Na2O",
-    "P4 + O2 = P2O5",
-    "Na2O + H2O = NaOH",
-    "Mg + HCl = MgCl2 + H2",
-    "AgNO3 + LiOH = AgOH + LiNO3",
-    "Pb + PbO2 + H^+ + SO4^2- = PbSO4 + H2O",Pb + PbO2 + 2*H2SO4 = 2*PbSO4 + 2*H2O
-    "HNO3 + Cu = Cu(NO3)2 + H2O + NO",
-    "KNO2 + KNO3 + Cr2O3 = K2CrO4 + NO",       3*KNO2 + KNO3 + Cr2O3 = 2*K2CrO4 + 4*NO
-    "AgNO3 + BaCl2 = Ba(NO3)2 + AgCl",         2*AgNO3 + BaCl2 = Ba(NO3)2 + 2*AgCl
-    "Cu(NO3)2 = CuO + NO2 + O2",               2*Cu(NO3)2 = 2*CuO + 4*NO2 + O2
-    "Al + CuSO4 = Al2(SO4)3 + Cu",             2*Al + 3*CuSO4 = Al2(SO4)3 + 3*Cu
-    "Na3PO4 + Zn(NO3)2 = NaNO3 + Zn3(PO4)2",   2*Na3PO4 + 3*Zn(NO3)2 = 6*NaNO3 + Zn3(PO4)2
-    "Cl2 + Ca(OH)2 = Ca(ClO)2 + CaCl2 + H2O",  Cl2 + Ca(OH)2 = Ca(ClO)2 + CaCl2 + H2O
-    "CHCl3 + O2 = CO2 + H2O + Cl2",            4*CHCl3 + 5*O2 = 4*CO2 + 2*H2O + 6*Cl2
-    "H2C2O4 + MnO4^- = H2O + CO2 + MnO + OH^-",
-    "H2O2 + Cr2O7^2- = Cr^3+ + O2 + OH^-",
-    "KBr + KMnO4 + H2SO4 = Br2 + MnSO4 + K2SO4 + H2O",    10*KBr + 2*KMnO4 + 8*H2SO4 = 5*Br2 + 2*MnSO4 + 6*K2SO4 + 8*H2O
-    "K2Cr2O7 + KI + H2SO4 -> Cr2(SO4)3 + I2 + H2O + K2SO4",?<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    "KClO3 + KBr + HCl = KCl + Br2 + H2O",      KClO3 + 6*KBr + 6*HCl = 7*KCl + 3*Br2 + 3*H2O
-    "Ag + HNO3 = AgNO3 + NO + H2O",
+H2 + O2 -> H2O,
+Fe + O2 -> Fe2O3,
+NH3 + O2 -> N2 + H2O,
+C2H2 + O2 -> CO2 + H2O,
+C3H8O + O2 -> CO2 + H2O,
+Na + O2 -> Na2O,
+P4 + O2 -> P2O5,
+Na2O + H2O -> NaOH,
+Mg + HCl -> MgCl2 + H2,
+AgNO3 + LiOH -> AgOH + LiNO3,
+Pb + PbO2 + H + SO4 -> PbSO4 + H2O,
+HNO3 + Cu -> Cu(NO3)2 + H2O + NO,
+KNO2 + KNO3 + Cr2O3 -> K2CrO4 + NO,
+AgNO3 + BaCl2 -> Ba(NO3)2 + AgCl,
+Cu(NO3)2 -> CuO + NO2 + O2,
+Al + CuSO4 -> Al2(SO4)3 + Cu,
+Na3PO4 + Zn(NO3)2 -> NaNO3 + Zn3(PO4)2,
+Cl2 + Ca(OH)2 -> Ca(ClO)2 + CaCl2 + H2O,
+CHCl3 + O2 -> CO2 + H2O + Cl2,
+H2C2O4 + MnO4 -> H2O + CO2 + MnO + OH,
+H2O2 + Cr2O7 -> Cr + O2 + OH,
+KBr + KMnO4 + H2SO4 -> Br2 + MnSO4 + K2SO4 + H2O,
+KClO3 + KBr + HCl -> KCl + Br2 + H2O,
+Ag + HNO3 -> AgNO3 + NO + H2O,

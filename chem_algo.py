@@ -70,6 +70,7 @@ def optimise_gauss(matr,ind):
 ### reduces matrix by the gauss method + optimises each line after calculatons
 ### returns reduced matrix
 def gauss_reduction(hmatrix):
+    print(hmatrix)
     for i in range(0,len(hmatrix)-1):
         if hmatrix[i][i] == 0:
             hmatrix=optimise_gauss(hmatrix,i)
@@ -88,6 +89,7 @@ def gauss_reduction(hmatrix):
                 c1 = int(devisor // hmatrix[i][i])
                 c2 = int(devisor // hmatrix[j][i])
                 hmatrix[j] = optimise_vector(subtract(num_vect(c1,hmatrix[i]),num_vect(c2,hmatrix[j])))
+    print(hmatrix)
     return(hmatrix)
 
 ### function finds the nmber of zeros in a line
@@ -151,7 +153,10 @@ def solutions(matrix):
 
 ### functiin that solves the equesion system
 def int_chem_matrix_kernel(matrix):
-    matrix = gauss_reduction(matrix)
+    #matrix = gauss_reduction(matrix)
+    for i in matrix:
+        print(i)
+    print("========")
     if len(matrix)==0:
         return []
     if len(matrix[0])==0:
@@ -171,7 +176,7 @@ def int_chem_matrix_kernel(matrix):
 
     while(zeros(sol)!=0):
         failsafe+=1
-        assert(failsafe <= 100)
+        assert(failsafe <= 10)
         factors = line_len - zeros(matrix[line])
         matches = exist_in_both(matrix[line],sol)
         if factors == 2 and matches == 0:
@@ -189,6 +194,12 @@ def int_chem_matrix_kernel(matrix):
             sol[missing] = abs(int(common/matrix[line][missing]))
         line+=1
         line=line%rows
+
+        for i in matrix:
+            print(i)
+        print("========")
+        print(sol)
+        print("========")
     sol=optimise_vector(sol)
     return (sol)
 ### function that given a matrix returns a kernel of the matrix, where all its members are integers

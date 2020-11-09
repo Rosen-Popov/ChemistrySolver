@@ -69,6 +69,7 @@ class chemical:
             loc_que.pop(0)
 
         for chem in self._elements.keys():
+            print(chem)
             self._elements[chem] = sum(self._elements[chem])
 
 
@@ -126,6 +127,29 @@ class chemical_reaction:
         return self._sol
 
 if __name__ == "__main__":
-    test=chemical_reaction("C2H5OH + O2 -> H2O + CO2")
+    if "--test" in sys.argv or "-t" in sys.argv:
+        import csv
+        number_of_tests =0
+        failed_tests = 0
+        succ_tests = 0
+        incorrect_output = 0
+        with open('tests.csv', newline='') as csvfile:
+            tests = csv.reader(csvfile, delimiter=',',quotechar=';')
+            for line  in tests:
+                number_of_tests = number_of_tests + 1
+                try:
+                    p=chemical_reaction(line[0])
+                    if p.solve_eq().replace(' ','') == line[1].replace(' ',''):
+                        succ_tests = succ_tests + 1
+                    else:
+                        print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
+                        incorrect_output = incorrect_output + 1
+                except:
+                    failed_tests = failed_tests + 1
+                    print("not doable ", line[0])
+
+
+    test=chemical_reaction("HNO3 + Cu -> Cu(NO3)2 + H2O + NO")
     test.solve_eq()
+    print(extract("NO3"))
     print(test.get_res())
