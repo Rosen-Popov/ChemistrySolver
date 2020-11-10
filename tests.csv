@@ -8,16 +8,17 @@ P4 + O2 -> P2O5 , 1*P4 + 5*O2 -> 2*P2O5
 Na2O + H2O -> NaOH , 1*Na2O + 1*H2O -> 2*NaOH
 Mg + HCl -> MgCl2 + H2 , 1*Mg + 2*HCl -> 1*MgCl2 + 1*H2
 Pb + PbO2 + H + SO4 -> PbSO4 + H2O , 1*Pb + 1*PbO2 + 4*H + 2*SO4 -> 2*PbSO4 + 2*H2O
-HNO3 + Cu -> Cu(NO3)2 + H2O + NO
+HNO3 + Cu -> Cu(NO3)2 + H2O + NO,8*HNO3 + 3*Cu -> 3*Cu(NO3)2 + 4*H2O + 2*NO
 KNO2 + KNO3 + Cr2O3 -> K2CrO4 + NO , 3*KNO2 + 1*KNO3 + 1*Cr2O3 -> 2*K2CrO4 + 4*NO
-AgNO3 + BaCl2 -> Ba(NO3)2 + AgCl
-Cu(NO3)2 -> CuO + NO2 + O2
-Al + CuSO4 -> Al2(SO4)3 + Cu
-Na3PO4 + Zn(NO3)2 -> NaNO3 + Zn3(PO4)2
-Cl2 + Ca(OH)2 -> Ca(ClO)2 + CaCl2 + H2O
+AgNO3 + BaCl2 -> Ba(NO3)2 + AgCl,2*AgNO3 + 1*BaCl2 -> 1*Ba(NO3)2 + 2*AgCl
+Cu(NO3)2 -> CuO + NO2 + O2,2*Cu(NO3)2 + 2*CuO -> 4*NO2 + 1*O2
+Al + CuSO4 -> Al2(SO4)3 + Cu,2*Al + 3*CuSO4 -> 1*Al2(SO4)3 + 3*Cu
+Na3PO4 + Zn(NO3)2 -> NaNO3 + Zn3(PO4)2,2*Na3PO4 + 3*Zn(NO3)2 -> 6*NaNO3 + 1*Zn3(PO4)2
+Cl2 + Ca(OH)2 -> Ca(ClO)2 + CaCl2 + H2O,2*Cl2 + 2*Ca(OH)2 -> 1*Ca(ClO)2 + 1*CaCl2 + 2*H2O
 CHCl3 + O2 -> CO2 + H2O + Cl2 , 4*CHCl3 + 5*O2 -> 4*CO2 + 2*H2O + 6*Cl2
 H2C2O4 + MnO4 -> H2O + CO2 + MnO + OH , 5*H2C2O4 + 2*MnO4 -> 4*H2O + 10*CO2 + 2*MnO + 2*OH
 H2O2 + Cr2O7 -> Cr + O2 + OH , 7*H2O2 + 4*Cr2O7 -> 8*Cr + 14*O2 + 14*OH
 KBr + KMnO4 + H2SO4 -> Br2 + MnSO4 + K2SO4 + H2O , 10*KBr + 2*KMnO4 + 8*H2SO4 -> 5*Br2 + 2*MnSO4 + 6*K2SO4 + 8*H2O
+K2Cr2O7 + KI + H2SO4 -> Cr2(SO4)3 + I2 + H2O + K2SO4,1*K2Cr2O7 + 6*KI + 7*H2SO4 -> 1*Cr2(SO4)3 + 3*I2 + 7*H2O + 4*K2SO4
 KClO3 + KBr + HCl -> KCl + Br2 + H2O , 1*KClO3 + 6*KBr + 6*HCl -> 7*KCl + 3*Br2 + 3*H2O
 Ag + HNO3 -> AgNO3 + NO + H2O , 3*Ag + 4*HNO3 -> 3*AgNO3 + 1*NO + 2*H2O

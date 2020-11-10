@@ -20,9 +20,14 @@ def ret_compounds(reaction):
 def remove_br(string):
     return string.strip("1234567890").strip("()")
 
+#def deb(string):
+#    chem_regex = "([A-Z][a-z]?[0-9]*)|([(].*[)][0-9]*)"
+#    num_regex = "[0-9]*\Z"
+#    x = re.findall(chem_regex, comp)
+
 def extract(struct):
     comp = struct[0]
-    mod = struct[1]
+    global_mod = struct[1]
     chem_regex = "([A-Z][a-z]?[0-9]*)|([(].*[)][0-9]*)"
     num_regex = "[0-9]*\Z"
     x = re.findall(chem_regex, comp)
@@ -32,8 +37,7 @@ def extract(struct):
         mod = re.findall(num_regex, x[i][0])
         mod.append('1')
         mod = list(filter(None,mod))
-        x[i] = [remove_br(x[i][0]), int(mod[0])]
-
+        x[i] = [remove_br(x[i][0]), int(mod[0])*global_mod]
     return x
 
 ###     checks if something is an element or a compound
@@ -41,20 +45,22 @@ def extract(struct):
 def check_if_element(Element):
     elem = 0
     for i in Element[0]:
-        if "A" <= i <= "Z":
+        if 'A' <= i <= 'Z':
             elem += 1
-        if elem >1:
-            return False
+    if elem >1:
+        return False
+    else:
         return True
 
 
-class chemical:
+
+class Chemical:
     def __init__(self,chem,side):
         self._elements = dict()
         self._matser_compound = [chem,1]
         self._side = side
 
-    def desolve_compound(self):
+    def IntoElemnets(self):
         loc_que=[self._matser_compound]
         for chem in loc_que:
             tmp=extract(chem)
@@ -65,15 +71,13 @@ class chemical:
                     else:
                         self._elements.update({member[0]:[int(member[1])*int(chem[1])]})
                 else:
-                    loc_que.append(member)
+                    tmp.extend(extract(member))
             loc_que.pop(0)
-
         for chem in self._elements.keys():
-            print(chem)
             self._elements[chem] = sum(self._elements[chem])
 
 
-class chemical_reaction:
+class ChemicalReaction:
     def __init__(self,reaction):
         self._compounds_list = ret_compounds(reaction)
         self._comp = []
@@ -82,14 +86,14 @@ class chemical_reaction:
         self._made_table = False
         self._sol = ""
         for i in self._compounds_list:
-            self._comp.append(chemical(i[0],i[1]))
+            self._comp.append(Chemical(i[0],i[1]))
         for i in self._comp:
-            i.desolve_compound()
+            i.IntoElemnets()
             for el in i._elements.keys():
                 self._chem_set.add(el)
         self._matrix =[[] for i in range (len(self._chem_set))]
 
-    def make_table(self):
+    def MakeTable(self):
         self._made_table = True
         p =0
         for i in self._chem_set:
@@ -100,9 +104,9 @@ class chemical_reaction:
                     self._matrix[p].append(0)
             p+=1
 
-    def solve_eq(self):
+    def SolveEq(self):
         if self._made_table == False:
-            self.make_table()
+            self.MakeTable()
             self._vector = chem_algo.get_integer_kernel(self._matrix)
             tmp_format_string_list =[]
             added_arrow = False
@@ -126,6 +130,18 @@ class chemical_reaction:
     def get_res(self):
         return self._sol
 
+def SolveAndPrint(chemical):
+    test=ChemicalReaction(chemical)
+    print(test.SolveEq())
+
+
+def print_stats(categ,all_tests,succ,incorrect,failed):
+    if len(categ)>0:
+        print(categ)
+    print("Passed :{}/{} - {}%".format(succ,all_tests,int((succ/all_tests)*100) ))
+    print("Total Failure :{}/{} - {}%".format(failed,all_tests,int((failed/all_tests)*100) ))
+    print("Incorrect Results :{}/{} - {}%".format(incorrect,all_tests,int((incorrect/all_tests)*100) ))
+
 if __name__ == "__main__":
     if "--test" in sys.argv or "-t" in sys.argv:
         import csv
@@ -138,8 +154,8 @@ if __name__ == "__main__":
             for line  in tests:
                 number_of_tests = number_of_tests + 1
                 try:
-                    p=chemical_reaction(line[0])
-                    if p.solve_eq().replace(' ','') == line[1].replace(' ',''):
+                    p=ChemicalReaction(line[0])
+                    if p.SolveEq().replace(' ','') == line[1].replace(' ',''):
                         succ_tests = succ_tests + 1
                     else:
                         print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
@@ -147,9 +163,27 @@ if __name__ == "__main__":
                 except:
                     failed_tests = failed_tests + 1
                     print("not doable ", line[0])
+        print_stats("Tests",number_of_tests,succ_tests,incorrect_output,failed_tests)
 
-
-    test=chemical_reaction("HNO3 + Cu -> Cu(NO3)2 + H2O + NO")
-    test.solve_eq()
-    print(extract("NO3"))
-    print(test.get_res())
+    if "--interactive" in sys.argv or "-i" in sys.argv:
+        print("Reaction ? =")
+        SolveAndPrint(input()) 
+        ### NOTE! possible buffer overflow with this 
+    elif "--pipe" in sys.argv or "-p" in sys.argv:
+        number_of_tests =0
+        failed_tests = 0
+        succ_tests = 0
+        incorrect_output = 0
+        for line  in sys.stdin:
+            number_of_tests = number_of_tests + 1
+            try:
+                p=ChemicalReaction(line[0])
+                if p.SolveEq().replace(' ','') == line[1].replace(' ',''):
+                    succ_tests = succ_tests + 1
+                else:
+                    print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
+                    incorrect_output = incorrect_output + 1
+            except:
+                failed_tests = failed_tests + 1
+                print("not doable ", line[0])
+        print_stats("Stdin",number_of_tests,succ_tests,incorrect_output,failed_tests)
