@@ -28,8 +28,8 @@ def remove_br(string):
 def extract(struct):
     comp = struct[0]
     global_mod = struct[1]
-    chem_regex = "([A-Z][a-z]?[0-9]*)|([(].*[)][0-9]*)"
-    num_regex = "[0-9]*\Z"
+    chem_regex = r"([A-Z][a-z]?[0-9]*)|([(].*[)][0-9]*)"
+    num_regex = r"[0-9]*\Z"
     x = re.findall(chem_regex, comp)
     for i in range(len(x)):
         x[i] = list(x[i])
@@ -155,7 +155,9 @@ if __name__ == "__main__":
                 number_of_tests = number_of_tests + 1
                 try:
                     p=ChemicalReaction(line[0])
-                    if p.SolveEq().replace(' ','') == line[1].replace(' ',''):
+                    print(sol)
+                    sol = p.SolveEq().replace(' ','')
+                    if sol == line[1].replace(' ',''):
                         succ_tests = succ_tests + 1
                     else:
                         print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
@@ -167,7 +169,7 @@ if __name__ == "__main__":
 
     if "--interactive" in sys.argv or "-i" in sys.argv:
         print("Reaction ? =")
-        SolveAndPrint(input()) 
+        SolveAndPrint(input())
         ### NOTE! possible buffer overflow with this 
     elif "--pipe" in sys.argv or "-p" in sys.argv:
         number_of_tests =0

@@ -18,6 +18,7 @@
 import sys
 import chem_parcer
 import chemist_ui
+import chem_algo
 # TODO import chemist_dialogue
 
 def solve(task):
@@ -44,9 +45,9 @@ def Start_dialogue():
 
 #   starts it in bulk mode if input form file
 def Bulk_Process(input_files):
-    for inp in input_files
-        try: 
-            with open(file) as fp:
+    for inp in input_files:
+        try:
+            with open(inp) as fp:
                 line=fp.readline()
                 while line:
                     line = line.strip("\"")
@@ -58,7 +59,7 @@ def Start_Ocr(input_files, output_file):
     #   NYI
     pass
 
-arg_types = ["-i","-v","-s","--ocr",,"-f","--help"]
+arg_types = ["-i","-v","-s","--ocr","-f","--help"]
 
 if __name__ == "__main__":
     sys.argv.pop(0)
