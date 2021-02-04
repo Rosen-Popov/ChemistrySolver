@@ -106,6 +106,7 @@ class ChemicalReaction:
 
     def SolveEq(self):
         if self._made_table == False:
+            print("1")
             self.MakeTable()
             self._vector = chem_algo.get_integer_kernel(self._matrix)
             tmp_format_string_list =[]
@@ -155,13 +156,13 @@ if __name__ == "__main__":
                 number_of_tests = number_of_tests + 1
                 try:
                     p=ChemicalReaction(line[0])
-                    print(sol)
                     sol = p.SolveEq().replace(' ','')
-                    if sol == line[1].replace(' ',''):
-                        succ_tests = succ_tests + 1
-                    else:
-                        print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
-                        incorrect_output = incorrect_output + 1
+                    #print(sol)
+                    #if sol == line[1].replace(' ',''):
+                        #succ_tests = succ_tests + 1
+                    #else:
+                    print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
+                    incorrect_output = incorrect_output + 1
                 except:
                     failed_tests = failed_tests + 1
                     print("not doable ", line[0])

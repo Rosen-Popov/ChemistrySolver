@@ -47,6 +47,7 @@ def int_chem_matrix_kernel(matrix):
         return []
 
     sol = [0] * len(matrix[0])
+    print("2")
     num_comb =  solutions(matrix)
     if num_comb>1:
         for p in range(len(matrix),len(matrix[0])):
@@ -80,6 +81,7 @@ def int_chem_matrix_kernel(matrix):
         line=line%rows
 
     sol=optimise_vector(sol)
+    print (sol)
     return (sol)
 ### function that given a matrix returns a kernel of the matrix, where all its members are integers
 ### returns a vector

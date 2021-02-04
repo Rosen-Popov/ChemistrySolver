@@ -47,7 +47,8 @@ def lcm(a, b):
 ### function finds the nmber of zeros in a line
 ### returns nuber of zeros in provided vector
 def zeros(vect):
-    return [x for x in vect if x == 0].len()
+    res = [x for x in vect if x == 0]
+    return len(res)
 ### finds number of elements that have values on the same indexes
 ### used in acessing how many of the variables in a line have a value in the solution
 ### returns the number of in a an array
@@ -60,11 +61,17 @@ def exist_in_both(source,loc):
 ### returns int, number of lines of zeros
 def full_zero_lines(matr):
     if len(matr)==0:
-        return []
+        return 0
     if len(matr[0])==0:
-        return []
+        return 0
     len_line=len(matr[0])
-    return [1 for x in matr if zeros(x) == len_line ].len()
+    res = 0
+    for x in matr:
+        print(zeros(x))
+        if zeros(x) == len_line:
+            res = res +1
+    print(res)
+    return res
 ### function that returns indexes of the the non-zero values in the provided vector
 ### returns an array of indexes
 def find_indexes(vect):
@@ -84,5 +91,6 @@ def find_missing_index(vect, sol):
 ### if result is more than one, ones should be added ustomatically to
 ### the solution vector
 def solutions(matrix):
+    print(3)
     return abs(len(matrix)-len(matrix[0])) + full_zero_lines(matrix)
 
