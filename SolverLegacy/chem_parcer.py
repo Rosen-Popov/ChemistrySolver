@@ -143,50 +143,51 @@ def print_stats(categ,all_tests,succ,incorrect,failed):
     print("Total Failure :{}/{} - {}%".format(failed,all_tests,int((failed/all_tests)*100) ))
     print("Incorrect Results :{}/{} - {}%".format(incorrect,all_tests,int((incorrect/all_tests)*100) ))
 
-if __name__ == "__main__":
-    if "--test" in sys.argv or "-t" in sys.argv:
-        import csv
-        number_of_tests =0
-        failed_tests = 0
-        succ_tests = 0
-        incorrect_output = 0
-        with open('tests.csv', newline='') as csvfile:
-            tests = csv.reader(csvfile, delimiter=',',quotechar=';')
-            for line  in tests:
-                number_of_tests = number_of_tests + 1
-                try:
-                    p=ChemicalReaction(line[0])
-                    sol = p.SolveEq().replace(' ','')
-                    #print(sol)
-                    #if sol == line[1].replace(' ',''):
-                        #succ_tests = succ_tests + 1
-                    #else:
-                    print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
-                    incorrect_output = incorrect_output + 1
-                except:
-                    failed_tests = failed_tests + 1
-                    print("not doable ", line[0])
-        print_stats("Tests",number_of_tests,succ_tests,incorrect_output,failed_tests)
-
-    if "--interactive" in sys.argv or "-i" in sys.argv:
-        print("Reaction ? =")
-        SolveAndPrint(input())
-        ### NOTE! possible buffer overflow with this 
-    elif "--pipe" in sys.argv or "-p" in sys.argv:
-        number_of_tests =0
-        failed_tests = 0
-        succ_tests = 0
-        incorrect_output = 0
-        for line  in sys.stdin:
-            number_of_tests = number_of_tests + 1
-            try:
-                p=ChemicalReaction(line[0])
-                if p.SolveEq().replace(' ','') == line[1].replace(' ',''):
-                    succ_tests = succ_tests + 1
-                else:
-                    print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
-                    incorrect_output = incorrect_output + 1
-            except:
-                failed_tests = failed_tests + 1
-                print("not doable ", line[0])
-        print_stats("Stdin",number_of_tests,succ_tests,incorrect_output,failed_tests)
+#if __name__ == "__main__":
+#    if "--test" in sys.argv or "-t" in sys.argv:
+#        import csv
+#        number_of_tests =0
+#        failed_tests = 0
+#        succ_tests = 0
+#        incorrect_output = 0
+#        with open('tests.csv', newline='') as csvfile:
+#            tests = csv.reader(csvfile, delimiter=',',quotechar=';')
+#            for line  in tests:
+#                number_of_tests = number_of_tests + 1
+#                try:
+#                    p=ChemicalReaction(line[0])
+#                    sol = p.SolveEq().replace(' ','')
+#                    #print(sol)
+#                    #if sol == line[1].replace(' ',''):
+#                        #succ_tests = succ_tests + 1
+#                    #else:
+#                    print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
+#                    incorrect_output = incorrect_output + 1
+#                except:
+#                    failed_tests = failed_tests + 1
+#                    print("not doable ", line[0])
+#        print_stats("Tests",number_of_tests,succ_tests,incorrect_output,failed_tests)
+#
+#    if "--interactive" in sys.argv or "-i" in sys.argv:
+#        print("Reaction ? =")
+#        SolveAndPrint(input())
+#        ### NOTE! possible buffer overflow with this 
+#    elif "--pipe" in sys.argv or "-p" in sys.argv:
+#        number_of_tests =0
+#        failed_tests = 0
+#        succ_tests = 0
+#        incorrect_output = 0
+#        for line  in sys.stdin:
+#            number_of_tests = number_of_tests + 1
+#            try:
+#                p=ChemicalReaction(line[0])
+#                if p.SolveEq().replace(' ','') == line[1].replace(' ',''):
+#                    succ_tests = succ_tests + 1
+#                else:
+#                    print(line[0],"<>\nres: ",p.get_res(),"\nans:",line[1])
+#                    incorrect_output = incorrect_output + 1
+#            except:
+#                failed_tests = failed_tests + 1
+#                print("not doable ", line[0])
+#        print_stats("Stdin",number_of_tests,succ_tests,incorrect_output,failed_tests)
+print(extract(["(OH)2(OH)2",1]))
