@@ -10,11 +10,25 @@ import tables
 import test
 
 type
-  ChemCompund = object
-    Mod:int
-    Chem:string
+  ChemCompund* = object
+    Mod*:int
+    Chem*:string
 
 let Numbers:set[char] = {'1','2','3','4','5','6','7','8','9','0'}
+proc SplitEquasionSides*(reaction:string):seq[seq[ChemCompund]]=
+  var tmp:string = reaction.replace(" ").replace(">")
+  let spl:seq[string] = tmp.split('-')
+  const left_side:int = 0
+  const right_side:int = 1 
+  result = @[ newSeq[ChemCompund](), newSeq[ChemCompund]()]
+  for i in items(spl[left_side].split('+')):
+    #                                       leading,trailing
+    result[0].add(ChemCompund(Mod:1,Chem:(i.strip(true,false,Numbers + {'*'}))))
+  for i in items(spl[right_side].split('+')):
+    #                                          leading,trailing
+    result[1].add(ChemCompund(Mod:(-1),Chem:(i.strip(true,false,Numbers + {'*'}))))
+  return result
+
 proc SplitEquasion(reaction:string):seq[ChemCompund]=
   var tmp:string = reaction.replace(" ").replace(">")
   let spl:seq[string] = tmp.split('-')
@@ -154,7 +168,7 @@ proc Decompose(compound:string):Table[string,int]=
       res[i.Chem] = i.Mod
   return res
 
-proc CreateMatrix(equation:string):seq[seq[int]]=
+proc CreateMatrix*(equation:string):seq[seq[int]]=
   var res:Table[string,seq[int]]
   var real_res:seq[seq[int]]
   var splt:seq[ChemCompund]=SplitEquasion(equation)
