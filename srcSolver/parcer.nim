@@ -154,6 +154,25 @@ proc Decompose(compound:string):Table[string,int]=
       res[i.Chem] = i.Mod
   return res
 
+proc CreateMatrix(equation:string):seq[seq[int]]=
+  var res:Table[string,seq[int]]
+  var real_res:seq[seq[int]]
+  var splt:seq[ChemCompund]=SplitEquasion(equation)
+  var Gone:seq[Table[string,int]]
+  Gone.setLen(splt.len())
+  for i in 0..splt.high():
+    Gone[i] = Decompose(splt[i].Chem)
+  for i in items(Gone):
+    for k in keys(i):
+      if not res.hasKey(k):
+        res[k]= repeat(0,splt.len())
+  for col in 0..splt.high():
+    for row in keys(Gone[col]):
+      res[row][col] = Gone[col][row] * splt[col].Mod
+  for i in keys(res):
+    real_res.add(res[i])
+  return real_res
+
 if isMainModule:
   block SplitEquasionTest:
     let name:string = "SplitEquasion "
@@ -231,3 +250,10 @@ if isMainModule:
     let result2:Table[string,int] = Decompose("C2H5(OH)2")
     let expected2:Table[string,int] = {"H": 7, "C": 2, "O": 2}.toTable
     TestEquTables(expected2,result2,name & " Nested A little complex Reaction")
+
+  block CreateMatrixTest:
+    let expected:seq[seq[int]] = @[ @[6, 0, 0, -2], @[2, 0, -1, 0], @[1, 2, -2, -1]]
+    let result:seq[seq[int]] = CreateMatrix("C2H5OH + O2 -> CO2 + H2O")
+    TestEquUnordered(expected,result,"CreateMatrix")
+
+
