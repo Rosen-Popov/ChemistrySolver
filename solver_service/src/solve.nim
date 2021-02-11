@@ -18,7 +18,6 @@ proc ParceAndSolve(reaction:string):string=
       res = res & " + "
     inc in_sol
   res = res & " -> "
-    
   for i in 0..chem_eq[1].high():
     if modiff[in_sol] > 1:
       res = res & $modiff[in_sol] & "*" & chem_eq[1][i].Chem
@@ -34,4 +33,7 @@ if isMainModule:
   block ParceAndSolveTest:
     let result = @[ParceAndSolve("C2H5OH + O2 -> CO2 + H2O")]
     let expected = @["C2H5OH + 3*O2 -> 2*CO2 + 3*H2O"]
-    TestEqu(expected,result,"ParceAndSolve ")
+    TestEqu(expected,result,"ParceAndSolve Etanol burning ")
+    let result1 = @[ParceAndSolve("CO + O2 -> CO2")]
+    let expected1 = @["2*CO + O2 -> 2*CO2"]
+    TestEqu(expected1,result1,"ParceAndSolve Carbon Monooxide burning ")
