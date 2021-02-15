@@ -2,7 +2,6 @@ import ./kernel.nim
 import ./parcer.nim
 import ./test.nim
 
-
 proc ParceAndSolve(reaction:string):string=
   let chem_eq:seq[seq[ChemCompund]] = SplitEquasionSides(reaction)
   let modiff:seq[int] = GetKernel(CreateMatrix(reaction))

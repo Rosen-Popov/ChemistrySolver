@@ -243,7 +243,7 @@ if isMainModule:
     TestEqu(expected1,result1,name & " Normal Formula ")
 
     let result2:seq[ChemCompund] = Extract(ChemCompund(Mod:2,Chem:"C2"))
-    let expected2:seq[ChemCompund]= @[ChemCompund(Mod: 4, Chem: "C")] 
+    let expected2:seq[ChemCompund] = @[ChemCompund(Mod: 4, Chem: "C")] 
     TestEqu(expected2,result2,name & " Single Element ")
 
     let result3:seq[ChemCompund] = Extract(ChemCompund(Mod:1,Chem:"C"))
@@ -269,5 +269,3 @@ if isMainModule:
     let expected:seq[seq[int]] = @[ @[6, 0, 0, -2], @[2, 0, -1, 0], @[1, 2, -2, -1]]
     let result:seq[seq[int]] = CreateMatrix("C2H5OH + O2 -> CO2 + H2O")
     TestEquUnordered(expected,result,"CreateMatrix")
-
-

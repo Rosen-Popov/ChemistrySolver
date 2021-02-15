@@ -37,5 +37,3 @@ proc TestEquUnordered*[T](expected,result:seq[T],block_module:string = "")=
       echo fmt"id {pos} {ex} not in {result}"
     inc(pos)
   echo fmt"{block_module}Test {passed}/{pos} passed"
-
-
